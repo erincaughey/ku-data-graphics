@@ -7,13 +7,14 @@ output:
 
 _JOUR 864 - Mike Williams - social media data visualization assignment_
 
-### what's needed
+#### packages needed
 
 ```{r packages, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE }
+#install.packages('tidyverse')
 library(tidyverse)
 ```
 
-### set up and clean the data
+#### Set up and clean the data
 
 ```{r the data, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 tweets <- read_csv("tweets_new.csv")
@@ -25,11 +26,19 @@ source_count <- arrange(source_count, desc(n))
 source_count <- slice(source_count, 1:15)
 ```
 
+-----
+
 ## How I use twitter
 
 Journalism today in a way relies on Twitter as a storytelling tool. Whether that's by source gathering, event coverage or story tips, the social media tool has placed itself as a necessity in today's media landscape. 
 
 I recently had my Twitter account verified through work, and although it may be too soon to tell if my current or future platform use will change because of it, it’s something I plan to pay attention to. With this in mind, I wanted to see how I have utilized Twitter in the past by measuring my frequency of tweets sent over time, if they were retweets or original tweets, and how often they were sent via phone or computer. 
+
+```{r alt-count code, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
+#same results as slicing `count_by_date` dataframe
+#slice only shows data and count though, using the tweets data shows content too
+tweets %>% count(created_at) %>% arrange(desc(n))
+```
 
 ```{r frequency, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 # frequency timeseries
@@ -55,11 +64,7 @@ timeseries +
 
 + **9-17-2016:** Denver ONA conference keynote with [@amywebb](https://twitter.com/amywebb).
 
-```{r alt-count code, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
-#same results as slicing `count_by_date` dataframe
-#slice only shows data and count though, using the tweets data shows content too
-tweets %>% count(created_at) %>% arrange(desc(n))
-```
+-----
 
 ```{r retweet, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 # Retweet True / False count
@@ -76,6 +81,8 @@ tf + geom_bar(fill = "#1DA1F2") +
 ```
 
 Based on my current Twitter usage I found the above graphic surprising. As of late I feel I retweet more than tweet original content. Although I'm not confident what Twitter is actually counting as retweet vs. original. My assumption is that anytime I retweet with my own comments, it's counted as an original tweet. This would make more send given the outcome of the data. 
+
+-----
 
 ```{r platform, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 # Tweet source count
