@@ -5,15 +5,17 @@ output:
     df_print: paged
 ---
 
+_JOUR 864 - Mike Williams - social media data visualization assignment_
+
 ### what's needed
 
-```{r packages}
+```{r packages, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE }
 library(tidyverse)
 ```
 
 ### set up and clean the data
 
-```{r the data}
+```{r the data, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 tweets <- read_csv("tweets_new.csv")
 
 count_by_date <- tweets %>% group_by(created_at) %>% tally()
@@ -29,7 +31,7 @@ Journalism today in a way relies on Twitter as a storytelling tool. Whether that
 
 I recently had my Twitter account verified through work, and although it may be too soon to tell if my current or future platform use will change because of it, it’s something I plan to pay attention to. With this in mind, I wanted to see how I have utilized Twitter in the past by measuring my frequency of tweets sent over time, if they were retweets or original tweets, and how often they were sent via phone or computer. 
 
-```{r frequency}
+```{r frequency, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 # frequency timeseries
 timeseries <- ggplot(data = count_by_date, aes(x = created_at, y = n)) + 
   geom_line(color = "#1DA1F2", size = 1)
@@ -53,13 +55,13 @@ timeseries +
 
 + **9-17-2016:** Denver ONA conference keynote with [@amywebb](https://twitter.com/amywebb).
 
-```{r alt-count code}
+```{r alt-count code, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 #same results as slicing `count_by_date` dataframe
 #slice only shows data and count though, using the tweets data shows content too
 tweets %>% count(created_at) %>% arrange(desc(n))
 ```
 
-```{r retweet}
+```{r retweet, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 # Retweet True / False count
 tf <- ggplot(tweets, aes(retweeted))
 tf + geom_bar(fill = "#1DA1F2") +
@@ -73,9 +75,8 @@ tf + geom_bar(fill = "#1DA1F2") +
     )
 ```
 
-```{r platform}
+```{r platform, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 # Tweet source count
-#source_count$n <- factor(source_count$n, levels = source_count$n[order(source_count$source)])
 client <- ggplot(source_count, aes(x=reorder(source, n), y=n))
 client + geom_bar(stat = "identity", fill = "#1DA1F2") + 
   labs(x="Platform", y="Tweets ", title="Where I tweet from", subtitle="The top 15 platforms I've tweeted from since 2009.", caption="Source: Tweets of @erin_caughey as of April 21 at 2 p.m.") +
@@ -91,6 +92,9 @@ client + geom_bar(stat = "identity", fill = "#1DA1F2") +
 
 <div style="font-size: 12px; color: #ccc;"><strong>Methodology:</strong> [@erin_caughey](https://twitter.com/erin_caughey) Twitter feed was scrapped with the [tweepy.org](www.tweepy.org) python script. Analysis and graphics of time and frequency of tweets was done with tidyverse and ggplot R packages. </div>
 
+<br>
+
+-----
 
 This same tactic can be used for other’s to check for patterns. For example, in recent years one of the primary reasons journalists rely on Twitter so often is because our President has taken to using it as his microphone. If I were to scrape Donald Trump’s tweets and check the same frequency, retweets and platform use the picture would be very different from my own social use. We’d most likely see a boom of frequency in the months prior to his presidential race announcement. We’d see an overwhelming majority of original tweets. And we’d most likely see a higher use of mobile Twitter client platforms.
 
