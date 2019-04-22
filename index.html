@@ -148,8 +148,8 @@ source_count &lt;- slice(source_count, 1:15)</code></pre>
 <h2>How I use twitter</h2>
 <p>Journalism today in a way relies on Twitter as a storytelling tool. Whether that’s by source gathering, event coverage or story tips, the social media tool has placed itself as a necessity in today’s media landscape.</p>
 <p>I recently had my Twitter account verified through work, and although it may be too soon to tell if my current or future platform use will change because of it, it’s something I plan to pay attention to. With this in mind, I wanted to see how I have utilized Twitter in the past by measuring my frequency of tweets sent over time, if they were retweets or original tweets, and how often they were sent via phone or computer.</p>
-<pre class="r"><code>#same results as slicing `count_by_date` dataframe
-#slice only shows data and count though, using the tweets data shows content too
+<pre class="r"><code>#same results as grouping and tally of `count_by_date` dataframe
+#tally only shows data and count though, using the tweets data shows content too
 tweets %&gt;% count(created_at) %&gt;% arrange(desc(n))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">

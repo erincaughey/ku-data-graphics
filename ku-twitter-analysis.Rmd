@@ -35,8 +35,8 @@ Journalism today in a way relies on Twitter as a storytelling tool. Whether that
 I recently had my Twitter account verified through work, and although it may be too soon to tell if my current or future platform use will change because of it, it’s something I plan to pay attention to. With this in mind, I wanted to see how I have utilized Twitter in the past by measuring my frequency of tweets sent over time, if they were retweets or original tweets, and how often they were sent via phone or computer. 
 
 ```{r alt-count code, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
-#same results as slicing `count_by_date` dataframe
-#slice only shows data and count though, using the tweets data shows content too
+#same results as grouping and tally of `count_by_date` dataframe
+#tally only shows data and count though, using the tweets data shows content too
 tweets %>% count(created_at) %>% arrange(desc(n))
 ```
 
