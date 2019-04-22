@@ -42,7 +42,7 @@ timeseries +
   theme(
     plot.title = element_text(size = 18, face = "bold"),
     plot.subtitle = element_text(size=10),
-    axis.text = element_text(size = 7),
+    axis.text = element_text(size = 9),
     axis.ticks = element_blank()
   )
 ```
@@ -70,10 +70,12 @@ tf + geom_bar(fill = "#1DA1F2") +
   theme(
       plot.title = element_text(size = 18, face = "bold"),
       plot.subtitle = element_text(size=10),
-      axis.text = element_text(size = 7),
+      axis.text = element_text(size = 9),
       axis.ticks = element_blank()
     )
 ```
+
+Based on my current Twitter usage I found the above graphic surprising. As of late I feel I retweet more than tweet original content. Although I'm not confident what Twitter is actually counting as retweet vs. original. My assumption is that anytime I retweet with my own comments, it's counted as an original tweet. This would make more send given the outcome of the data. 
 
 ```{r platform, echo=TRUE, message=FALSE, warning=FALSE, paged.print=TRUE}
 # Tweet source count
@@ -84,18 +86,20 @@ client + geom_bar(stat = "identity", fill = "#1DA1F2") +
   theme(
     plot.title = element_text(size = 18, face = "bold"),
     plot.subtitle = element_text(size=10),
-    axis.text = element_text(size = 7),
+    axis.text = element_text(size = 9),
     axis.ticks = element_blank()
   ) +
   coord_flip()
 ```
 
-<div style="font-size: 12px; color: #ccc;"><strong>Methodology:</strong> [@erin_caughey](https://twitter.com/erin_caughey) Twitter feed was scrapped with the [tweepy.org](www.tweepy.org) python script. Analysis and graphics of time and frequency of tweets was done with tidyverse and ggplot R packages. </div>
+<div style="font-size: 12px; color: #ccc;"><strong>Methodology:</strong> Tweets by [@erin_caughey](https://twitter.com/erin_caughey) were scrapped with the [tweepy.org](www.tweepy.org) python script. Analysis and graphics of time and frequency of tweets was done with tidyverse and ggplot R packages. </div>
 
 <br>
 
 -----
 
-This same tactic can be used for other’s to check for patterns. For example, in recent years one of the primary reasons journalists rely on Twitter so often is because our President has taken to using it as his microphone. If I were to scrape Donald Trump’s tweets and check the same frequency, retweets and platform use the picture would be very different from my own social use. We’d most likely see a boom of frequency in the months prior to his presidential race announcement. We’d see an overwhelming majority of original tweets. And we’d most likely see a higher use of mobile Twitter client platforms.
+Since being a journalist today pretty much requires that you're plugged in to social media constatnly throughout the day, I'm not surprised by the amount I tweet from the Twitter Web Client or iPhone. This however, was a good reminder for me to check what platforms have access to my Twitter account and lead to some personal doxxing of my information. 
 
-These three focus areas provide a very broad view of my Twitter usage. The next step in analyzing this data would be to compare my tweet frequency by similar months over the years, or how frequency corresponds to major events. Or what time of day am I use Twitter on a computer versus a mobile phone? 
+This same process can be used on other Twitter accounts to check for patterns. For example, in recent years one of the primary reasons journalists rely on Twitter so often is because our President has taken to using it as his microphone. If I were to scrape Donald Trump’s tweets and check the same frequency, retweets and platform use the picture would be very different from my own social use. We’d most likely see a boom of frequency in the months prior to his presidential race announcement. We’d see an overwhelming majority of original tweets. And we’d most likely see a higher use of mobile Twitter client platforms. The data I scrapped also provides counts of how many times each tweet was retweeted. Retweets of my original content is very low, therefore not interesting. However, the amount of retweets on President Trump's tweets could show a different pattern.
+
+These three focus areas provide a very broad view of my Twitter usage. The next step in analyzing this data could be to compare my tweet frequency by similar months over the years, or how frequency corresponds to major events using small multiples or through a calendar heatmap.
