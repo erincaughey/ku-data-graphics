@@ -1,0 +1,97 @@
+---
+title: "KU Twitter analysis"
+output:
+  html_document:
+    df_print: paged
+---
+
+### what's needed
+
+```{r packages}
+library(tidyverse)
+```
+
+### set up and clean the data
+
+```{r the data}
+tweets <- read_csv("tweets_new.csv")
+
+count_by_date <- tweets %>% group_by(created_at) %>% tally()
+
+source_count <- tweets %>% group_by(source) %>% tally() 
+source_count <- arrange(source_count, desc(n))
+source_count <- slice(source_count, 1:15)
+```
+
+## How I use twitter
+
+Journalism today in a way relies on Twitter as a storytelling tool. Whether that's by source gathering, event coverage or story tips, the social media tool has placed itself as a necessity in today's media landscape. 
+
+I recently had my Twitter account verified through work, and although it may be too soon to tell if my current or future platform use will change because of it, it’s something I plan to pay attention to. With this in mind, I wanted to see how I have utilized Twitter in the past by measuring my frequency of tweets sent over time, if they were retweets or original tweets, and how often they were sent via phone or computer. 
+
+```{r frequency}
+# frequency timeseries
+timeseries <- ggplot(data = count_by_date, aes(x = created_at, y = n)) + 
+  geom_line(color = "#1DA1F2", size = 1)
+timeseries +
+  annotate(geom="text",x=as.Date("2012-06-20"), y=110, label="Sept. 23, 2011: 106 tweets about USWNT and MU presidential inaguration", colour = "tomato", size=3) +
+  labs(x="Date", y="Tweets per day ", title="Tweeting frequency", subtitle="How often I've tweeted every day since joining Twitter.", caption="Source: Tweets of @erin_caughey as of April 21 at 2 p.m.") +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    plot.subtitle = element_text(size=10),
+    axis.text = element_text(size = 7),
+    axis.ticks = element_blank()
+  )
+```
+
+###Frequency plot takaways:
+
++ **9-23-2011 tweets:** Morning tweet from watching a U.S. Women's National Team friendly game against Canada. Afternoon tweets from live tweeting class assignment covering the inauguration of Maruqette's new president. (found via code below)
+
++ **10-10-2012 tweets:** Tweets from Marquettes PRSMS conference. 
+
++ **9-17-2016:** Denver ONA conference keynote with [@amywebb](https://twitter.com/amywebb).
+
+```{r alt-count code}
+#same results as slicing `count_by_date` dataframe
+#slice only shows data and count though, using the tweets data shows content too
+tweets %>% count(created_at) %>% arrange(desc(n))
+```
+
+```{r retweet}
+# Retweet True / False count
+tf <- ggplot(tweets, aes(retweeted))
+tf + geom_bar(fill = "#1DA1F2") +
+  labs(x="Retweeted", y="Number of tweets", title="Retweets or original tweets?", subtitle="How many tweets of mine are retweeted from other accounts or original?", caption="Source: Tweets of @erin_caughey as of April 21 at 2 p.m.") +
+  theme_minimal() +
+  theme(
+      plot.title = element_text(size = 18, face = "bold"),
+      plot.subtitle = element_text(size=10),
+      axis.text = element_text(size = 7),
+      axis.ticks = element_blank()
+    )
+```
+
+```{r platform}
+# Tweet source count
+#source_count$n <- factor(source_count$n, levels = source_count$n[order(source_count$source)])
+client <- ggplot(source_count, aes(x=reorder(source, n), y=n))
+client + geom_bar(stat = "identity", fill = "#1DA1F2") + 
+  labs(x="Platform", y="Tweets ", title="Where I tweet from", subtitle="The top 15 platforms I've tweeted from since 2009.", caption="Source: Tweets of @erin_caughey as of April 21 at 2 p.m.") +
+  theme_minimal() + 
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    plot.subtitle = element_text(size=10),
+    axis.text = element_text(size = 7),
+    axis.ticks = element_blank()
+  ) +
+  coord_flip()
+```
+
+<div style="font-size: 12px; color: #ccc;"><strong>Methodology:</strong> [@erin_caughey](https://twitter.com/erin_caughey) Twitter feed was scrapped with the [tweepy.org](www.tweepy.org) python script. Analysis and graphics of time and frequency of tweets was done with tidyverse and ggplot R packages. </div>
+
+
+This same tactic can be used for other’s to check for patterns. For example, in recent years one of the primary reasons journalists rely on Twitter so often is because our President has taken to using it as his microphone. If I were to scrape Donald Trump’s tweets and check the same frequency, retweets and platform use the picture would be very different from my own social use. We’d most likely see a boom of frequency in the months prior to his presidential race announcement. We’d see an overwhelming majority of original tweets. And we’d most likely see a higher use of mobile Twitter client platforms.
+
+These three focus areas provide a very broad view of my Twitter usage. The next step in analyzing this data would be to compare my tweet frequency by similar months over the years, or how frequency corresponds to major events. Or what time of day am I use Twitter on a computer versus a mobile phone? 
