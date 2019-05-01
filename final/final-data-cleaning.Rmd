@@ -1,0 +1,128 @@
+---
+title: "data clean"
+output: html_notebook
+---
+
+### libraries
+
+```{r}
+library(tidyverse)
+```
+
+## Trust
+
+### Trust news in social media most of the time
+
+**Scale:**
+
++ Strongly disagree
+
++ Disagree
+
++ Tend to disagree
+
++ Neither agree nor disagree
+
++ Tend to agree
+
++ Agree
+
++ Strongly agree
+
+```{r}
+social_trust <- read_csv("data/trust/social-news-trust.csv")
+
+# stack gender
+social_trust_gender <- social_trust %>% select(question,question_choice, male, female) %>% gather(gender, count, male, female)
+
+# stack age
+social_trust_age <- social_trust %>% select(question, question_choice, `18-24`:`65+`) %>% gather(age, count, `18-24`:`65+`)
+
+```
+
+### Trust news in search engines most of the time
+
+**Scale:**
+
++ Strongly disagree
+
++ Disagree
+
++ Tend to disagree
+
++ Neither agree nor disagree
+
++ Tend to agree
+
++ Agree
+
++ Strongly agree
+
+```{r}
+search_trust <- read_csv("data/trust/search-news-trust.csv")
+
+# stack gender
+search_trust_gender <- search_trust %>% select(question, question_choice, male, female) %>% gather(gender, count, male, female)
+
+# stack age
+search_trust_age <- search_trust %>% select(question, question_choice, `18-24`:`65+`) %>% gather(age, count, `18-24`:`65+`)
+
+
+```
+
+### Trust(6-10) vs. Distrust(0-4) in brands
+
+**Scale:** 1-10 
+
+**Options:**
+
++ Fox News
+
++ CNN
+
++ NBC/MSNBC News
+
++ ABC News
+
++ CBS News
+
++ Yahoo! News
+
++ Local television news
+
++ New York Times
+
++ Washington Post
+
++ HuffPost (Huffington Post)
+
++ Buzzfeed News
+
++ NPR News
+
++ Breitbart
+
++ Wall Street Journal
+
++ Vice News
+
+```{r}
+brand_trust <- read_csv("data/trust/brand-trust-distrust.csv")
+
+# stack gender
+brand_trust_gender <- brand_trust %>% select(question, question_choice, male, female) %>% gather(gender, count, male, female)
+
+# stack age
+brand_trust_age <- brand_trust %>% select(question, question_choice, `18-24`:`65+`) %>% gather(age, count, `18-24`:`65+`)
+
+
+```
+
+-----
+
+## Misinformation
+
+
+-----
+
+## Literacy

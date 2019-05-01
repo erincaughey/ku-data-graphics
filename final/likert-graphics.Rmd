@@ -1,0 +1,18 @@
+---
+title: "Likert scales"
+output: html_notebook
+---
+
+## Likert scale counts based on Reuters 2018 Digital Report Tables
+
+Libraries
+```{r libraries}
+library(tidyverse)
+#install.packages("ggthemes")
+library(ggthemes)
+library(stringr)
+library(reshape2)
+library(RColorBrewer)
+```
+
+
