@@ -38,6 +38,8 @@ social_trust_gender <- social_trust %>% select(question,question_choice, male, f
 # stack age
 social_trust_age <- social_trust %>% select(question, question_choice, `18-24`:`65+`) %>% gather(age, count, `18-24`:`65+`)
 
+write_csv(social_trust_age, "data/trust/age-socialtrust-split.csv")
+
 ```
 
 ### Trust news in search engines most of the time
@@ -67,6 +69,7 @@ search_trust_gender <- search_trust %>% select(question, question_choice, male, 
 # stack age
 search_trust_age <- search_trust %>% select(question, question_choice, `18-24`:`65+`) %>% gather(age, count, `18-24`:`65+`)
 
+write_csv(search_trust_age, "data/trust/age-searchtrust-split.csv")
 
 ```
 
@@ -122,6 +125,50 @@ brand_trust_age <- brand_trust %>% select(question, question_choice, `18-24`:`65
 
 ## Misinformation
 
+**Agree with statements:**
+
++ Technology companies (e.g. Facebook and Google) should do more to make it easier to separate what is real and what is fake on the internet
+
++ Media companies and journalists should do more to make it easier to separate what is real and what is fake on the internet
+
++ The Government should do more to make it easier to separate what is real and fake on the internet
+
+**Scale:**
+
++ Strongly disagree
+
++ Disagree
+
++ Tend to disagree
+
++ Neither agree nor disagree
+
++ Tend to agree
+
++ Agree
+
++ Strongly agree
+
+```{r}
+misinfo_trio <- read_csv("data/misinfo/tech-media-gov.csv")
+
+# stack gender
+misinfo_gender <- misinfo_trio %>% select(entity, question_choice, Male, Female) %>% gather(gender, count, Male, Female)
+
+# stack age
+misinfo_age <- misinfo_trio %>% select(entity, question_choice, `18-24`:`65+`) %>% gather(age, count, `18-24`:`65+`)
+
+# separate by age groups
+
+misinfo_age_tech <- misinfo_age %>% filter(entity == "Technology companies")
+write_csv(misinfo_age_tech, "data/misinfo/trio-tech.csv")
+
+misinfo_age_media <- misinfo_age %>% filter(entity == "Media companies and journalists")
+write_csv(misinfo_age_media, "data/misinfo/trio-media.csv")
+
+misinfo_age_gov <- misinfo_age %>% filter(entity == "Government")
+write_csv(misinfo_age_gov, "data/misinfo/trio-gov.csv")
+```
 
 -----
 

@@ -1,0 +1,43 @@
+entity,question_choice,age,count
+Government,Strongly disagree,18-24,29
+Government,Disagree,18-24,74
+Government,Tend to disagree,18-24,45
+Government,Neither agree nor disagree,18-24,100
+Government,Tend to agree,18-24,58
+Government,Agree,18-24,100
+Government,Strongly agree,18-24,42
+Government,Strongly disagree,25-34,71
+Government,Disagree,25-34,139
+Government,Tend to disagree,25-34,68
+Government,Neither agree nor disagree,25-34,141
+Government,Tend to agree,25-34,107
+Government,Agree,25-34,167
+Government,Strongly agree,25-34,60
+Government,Strongly disagree,35-44,61
+Government,Disagree,35-44,112
+Government,Tend to disagree,35-44,51
+Government,Neither agree nor disagree,35-44,171
+Government,Tend to agree,35-44,96
+Government,Agree,35-44,159
+Government,Strongly agree,35-44,64
+Government,Strongly disagree,45-54,57
+Government,Disagree,45-54,104
+Government,Tend to disagree,45-54,47
+Government,Neither agree nor disagree,45-54,104
+Government,Tend to agree,45-54,68
+Government,Agree,45-54,125
+Government,Strongly agree,45-54,57
+Government,Strongly disagree,55-64,67
+Government,Disagree,55-64,134
+Government,Tend to disagree,55-64,67
+Government,Neither agree nor disagree,55-64,149
+Government,Tend to agree,55-64,118
+Government,Agree,55-64,210
+Government,Strongly agree,55-64,92
+Government,Strongly disagree,65+,48
+Government,Disagree,65+,99
+Government,Tend to disagree,65+,51
+Government,Neither agree nor disagree,65+,97
+Government,Tend to agree,65+,114
+Government,Agree,65+,212
+Government,Strongly agree,65+,98

@@ -1,0 +1,43 @@
+entity,question_choice,age,count
+Technology companies,Strongly disagree,18-24,18
+Technology companies,Disagree,18-24,55
+Technology companies,Tend to disagree,18-24,37
+Technology companies,Neither agree nor disagree,18-24,78
+Technology companies,Tend to agree,18-24,69
+Technology companies,Agree,18-24,141
+Technology companies,Strongly agree,18-24,72
+Technology companies,Strongly disagree,25-34,48
+Technology companies,Disagree,25-34,76
+Technology companies,Tend to disagree,25-34,28
+Technology companies,Neither agree nor disagree,25-34,138
+Technology companies,Tend to agree,25-34,128
+Technology companies,Agree,25-34,233
+Technology companies,Strongly agree,25-34,106
+Technology companies,Strongly disagree,35-44,33
+Technology companies,Disagree,35-44,61
+Technology companies,Tend to disagree,35-44,28
+Technology companies,Neither agree nor disagree,35-44,109
+Technology companies,Tend to agree,35-44,144
+Technology companies,Agree,35-44,272
+Technology companies,Strongly agree,35-44,128
+Technology companies,Strongly disagree,45-54,27
+Technology companies,Disagree,45-54,44
+Technology companies,Tend to disagree,45-54,17
+Technology companies,Neither agree nor disagree,45-54,76
+Technology companies,Tend to agree,45-54,114
+Technology companies,Agree,45-54,213
+Technology companies,Strongly agree,45-54,99
+Technology companies,Strongly disagree,55-64,27
+Technology companies,Disagree,55-64,55
+Technology companies,Tend to disagree,55-64,28
+Technology companies,Neither agree nor disagree,55-64,84
+Technology companies,Tend to agree,55-64,180
+Technology companies,Agree,55-64,354
+Technology companies,Strongly agree,55-64,175
+Technology companies,Strongly disagree,65+,20
+Technology companies,Disagree,65+,33
+Technology companies,Tend to disagree,65+,13
+Technology companies,Neither agree nor disagree,65+,68
+Technology companies,Tend to agree,65+,162
+Technology companies,Agree,65+,307
+Technology companies,Strongly agree,65+,145
