@@ -170,7 +170,7 @@ d3.csv('age-socialtrust-split.csv', row, function(error, dataFlat) {
     function positionLabel(d) {
         var xValue = xScale(x(d));
         var xMax = xScale.range()[1];
-        if (xValue < (0.25 * xMax)) {
+        if (xValue < (0.20 * xMax)) {
             d3.select(this)
                 .classed('label--white', false)
                 .attr('x', xValue)
