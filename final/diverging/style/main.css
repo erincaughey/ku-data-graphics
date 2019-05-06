@@ -1,13 +1,42 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+}
+
+#chart {
+  margin: 20px 20px;
+}
+
+.title {
+  font-family: 'Raleway';
+  font-size: 20px;
+  font-weight: 100;
+  fill: #333;
+  text-anchor: middle;
 }
 
 .label {
   text-anchor: middle;
   fill: #777;
+}
+
+.brand.label {
   font-size: 10px;
 }
 
-/* .brand .label {
-  font-size: 10px;
-} */
+.axis line {
+  stroke: #eee;
+}
+
+.axis path {
+  display: none;
+}
+
+.axis text {
+  font-size: 11px;
+  fill: #777;
+}
+
+#controls * {
+  vertical-align: middle;
+}

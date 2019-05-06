@@ -115,7 +115,7 @@ function row(d) {
     };
 }
 
-d3.csv('age-socialtrust-split.csv', row, function(error, dataFlat) {
+d3.csv('trio-gov.csv', row, function(error, dataFlat) {
     if (error) throw error;
 
     var data = d3.nest()

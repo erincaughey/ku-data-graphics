@@ -1,5 +1,4 @@
 var data;
-//var displayYear = 1980;
 var barHeight = 20, barWidth = 380, centerOffset = 100;
 
 var distrustScale = d3.scaleLinear().domain([0, 1550]).range([0, -barWidth]);
