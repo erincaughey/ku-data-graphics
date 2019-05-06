@@ -1,0 +1,61 @@
+---
+title: "country small multiples"
+output: html_notebook
+---
+
+packages:
+
+```{r libraries}
+library(tidyverse)
+```
+
+set up data: 
+```{r import and clean}
+country_trust <- read_csv("data/clean_country-fake-news-concern.csv")
+
+country_trust_stack <- country_trust %>% select(country, somewhat_concered, total_concerned, total_not_concerned) %>% gather(concern, percent, somewhat_concered, total_concerned, total_not_concerned)
+
+just_US <- country_trust_stack %>% filter(country == "US")
+```
+ 
+Small multiples to look at: 
+Q_FAKE_NEWS_2_6. To what extent, if at all, are you concerned about the following: - The use of the term fake news (e.g. by politicians, others) to discredit news media they don’t like
+
+test plot with USA: 
+
+```{r single plot}
+US_trust <- ggplot(just_US, aes(reorder(concern, percent), percent)) +
+  geom_bar(stat = "identity") + 
+  coord_flip() +
+  labs(title = "Level of concern over the term fake news in each country surveyed", y = "level of concern", x = "percent", caption = "Source: Reuters 2018 Digital News Report") +
+  #facet_wrap(~ country) + 
+  theme_minimal()
+
+US_trust
+```
+
+small multiples: 
+
+```{r small multiiples}
+
+all_countries <- ggplot(country_trust_stack, aes(reorder(concern, percent), percent)) +
+  geom_bar(stat = "identity") + 
+  coord_flip() +
+  labs(title = "Level of concern over the term fake news in each country surveyed", y = "level of concern", x = "percent", caption = "Source: Reuters 2018 Digital News Report") +
+  facet_wrap(~ country) + 
+  theme_minimal()
+
+all_countries
+```
+
+export: 
+```{r}
+# PDF or PNG 
+# to speficiy a chart add a "plot = plot_name" parameter after the file name.
+ggsave("US_only.pdf", plot = US_trust, width = 8, height = 8, units = "in", dpi = 320)
+ggsave("US_only.png", plot = US_trust, width = 8, height = 8, units = "in", dpi = 320)
+
+ggsave("all_countries.pdf", plot = all_countries, width = 11, height = 8, units = "in", dpi = 320)
+ggsave("all_countries.png", plot = all_countries, width = 11, height = 8, units = "in", dpi = 320)
+```
+
