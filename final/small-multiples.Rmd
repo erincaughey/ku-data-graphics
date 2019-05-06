@@ -7,13 +7,18 @@ packages:
 
 ```{r libraries}
 library(tidyverse)
+#install.packages("gghighlight")
+library(ggplot2)
+library(gghighlight)
 ```
 
 set up data: 
 ```{r import and clean}
 country_trust <- read_csv("data/clean_country-fake-news-concern.csv")
 
-country_trust_stack <- country_trust %>% select(country, somewhat_concered, total_concerned, total_not_concerned) %>% gather(concern, percent, somewhat_concered, total_concerned, total_not_concerned)
+country_trust_stack <- country_trust %>% select(country, `Somewhat concerned`, Concerned, `Not concerned`) %>% gather(concern, percent, `Somewhat concerned`, Concerned, `Not concerned`)
+
+country_trust_stack <- country_trust_stack %>% mutate(percent_new = percent * 100)
 
 just_US <- country_trust_stack %>% filter(country == "US")
 ```
@@ -21,27 +26,42 @@ just_US <- country_trust_stack %>% filter(country == "US")
 Small multiples to look at: 
 Q_FAKE_NEWS_2_6. To what extent, if at all, are you concerned about the following: - The use of the term fake news (e.g. by politicians, others) to discredit news media they don’t like
 
+## create a theme to highlight
+```{r theme}
+my_theme <- function(){
+  list(
+      theme_minimal(),
+      scale_fill_manual(values=c("tomato", "#56B4E9", "#999999"), 
+                       name="Level of Concern",
+                       breaks=c("Concerned", "Somewhat concerned", "Not concerned"),
+                       labels=c("Concerned", "Somewhat concerned", "Not concerned")) 
+    )
+}
+```
+
+
 test plot with USA: 
 
 ```{r single plot}
-US_trust <- ggplot(just_US, aes(reorder(concern, percent), percent)) +
-  geom_bar(stat = "identity") + 
+US_trust <- ggplot(just_US, aes(reorder(concern, percent_new), percent_new, width=.5)) +
+  geom_bar(aes(fill = concern), stat = "identity") + 
+  my_theme() +
   coord_flip() +
-  labs(title = "Level of concern over the term fake news in each country surveyed", y = "level of concern", x = "percent", caption = "Source: Reuters 2018 Digital News Report") +
-  #facet_wrap(~ country) + 
-  theme_minimal()
+  labs(title = "Level of concern over the term fake news in each country surveyed", x = "level of concern", y = "percent", caption = "Source: Reuters 2018 Digital News Report") +
+  geom_text(aes(label = percent_new), colour = "white", hjust = 1.3)
 
-US_trust
+US_trust #+ gghighlight(percent_new == 50)
 ```
 
 small multiples: 
 
 ```{r small multiiples}
 
-all_countries <- ggplot(country_trust_stack, aes(reorder(concern, percent), percent)) +
-  geom_bar(stat = "identity") + 
+all_countries <- ggplot(country_trust_stack, aes(reorder(concern, percent_new), percent_new, width=.6)) +
+  geom_bar(stat = "identity", aes(fill = concern)) +
+  my_theme() +
   coord_flip() +
-  labs(title = "Level of concern over the term fake news in each country surveyed", y = "level of concern", x = "percent", caption = "Source: Reuters 2018 Digital News Report") +
+  labs(title = "Level of concern over the term fake news in each country surveyed", x = "level of concern", y = "percent", caption = "Source: Reuters 2018 Digital News Report") +
   facet_wrap(~ country) + 
   theme_minimal()
 
