@@ -14,7 +14,7 @@
             <text class="title" x="0" y="20"></text>
             <text class="distrust label" x="-200" y="55">Distrust</text>
             <text class="trust label" x="200" y="55">Trust</text>
-            <text class="year label" x="0" y="55">brand</text>
+            <text class="year label" x="0" y="55">Brand</text>
             <g transform="translate(0, 60)">
               <g class="distrust axis" transform="translate(-70, 0)"></g>
               <g class="trust axis" transform="translate(70, 0)"></g>
@@ -43,7 +43,9 @@
             //year: +d.year,
             brand: d.brand,
             trust_count: +d.trust_count,
-            distrust_count: +d.distrust_count
+            distrust_count: +d.distrust_count,
+            trust_perc: +d.trust_perc,
+            distrust_perc: +d.distrust_perc
           }
         });
 
@@ -54,6 +56,7 @@
           return a.trust_count - b.trust_count;
         })
       }
+
 
       function initializeAxes() {
         let tickSize = 310;
@@ -83,11 +86,28 @@
           .style("fill", "#F15F36");
 
         d3.select(this)
+          .append("text")
+          .attr("class", "distrust-label")
+          .attr("transform", "translate(-" + centerOffset + ",0)")
+          .attr("y", barHeight / 2)
+          .attr("text-anchor", "end")
+          .attr("dy", ".35em")
+          .text(function(d) { return d.distrust_count });
+
+        d3.select(this)
           .append("rect")
           .attr("transform", "translate(" + centerOffset + ",0)")
           .attr("height", barHeight - 1)
           .classed("trust", true)
           .style("fill", "#19A0AA");
+
+        d3.select(this)
+          .append("text")
+          .attr("class", "trust-label")
+          .attr("transform", "translate(" + centerOffset + ",0)")
+          .attr("y", barHeight / 2)
+          .attr("dy", ".35em")
+          .text(function(d) { return d.trust_count });
 
         d3.select(this)
           .append("text")
@@ -105,8 +125,16 @@
           .attr("width", -distrustScale(d.distrust_count));
 
         d3.select(this)
+          .select(".distrust-label")
+          .attr("x", distrustScale(d.distrust_count));
+
+        d3.select(this)
           .select(".trust")
           .attr("width", trustScale(d.trust_count));
+
+        d3.select(this)
+          .select(".trust-label")
+          .attr("x", trustScale(d.trust_count));
       }
 
       function updateChart() {
