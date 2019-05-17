@@ -1,0 +1,20 @@
+﻿question,question_choice,gender_all,pct_correct
+News outlet NOT primarily dependent on advertising for financial support,PBS (Correct),1094,0.838957055
+News outlet NOT primarily dependent on advertising for financial support,Fox News,173,
+News outlet NOT primarily dependent on advertising for financial support,New York Times,117,
+News outlet NOT primarily dependent on advertising for financial support,USA Today,131,
+News outlet NOT primarily dependent on advertising for financial support,Incorrect,1304,
+Typically responsible for writing a press release,A spokesperson for an organisation  (Correct),846,0.544752093
+Typically responsible for writing a press release,A reporter for a news organisation,419,
+Typically responsible for writing a press release,A lawyer for a news aggregator,83,
+Typically responsible for writing a press release,A producer for a news organisation,278,
+Typically responsible for writing a press release,Incorrect,1553,
+How are individual decisions abut what news to show people on Facebook made,By computer analysis of what stories might interest you  (Correct),690,0.403981265
+How are individual decisions abut what news to show people on Facebook made,By editors and journalists that work for Facebook,334,
+How are individual decisions abut what news to show people on Facebook made,By editors and journalists that work for news outlets,227,
+How are individual decisions abut what news to show people on Facebook made,At random,167,
+How are individual decisions abut what news to show people on Facebook made,Incorrect,1708,
+Best describes financial performance of newspaper websites and apps,Most of them make a loss  (Correct),271,0.127349624
+Best describes financial performance of newspaper websites and apps,Most of them make a profit,673,
+Best describes financial performance of newspaper websites and apps,Most of them just cover their costs,504,
+Best describes financial performance of newspaper websites and apps,Incorrect,2128,
