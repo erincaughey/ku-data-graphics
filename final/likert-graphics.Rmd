@@ -54,20 +54,19 @@ poorJ_theme <- function(){
 ```
 
 ```{r fake plot}
-fake_plot <- ggplot(stack_real_fake, aes(segment, percent_new, width=.5, fill = percent_new)) + #reorder(column, by_what)
-  geom_bar(aes(fill = concern), stat = "identity", position = "fill") + 
+fake_plot <- ggplot(stack_real_fake, aes(segment, percent_new, width=.5, fill = percent_new)) + 
+  geom_bar(aes(fill = concern), stat = "identity", position = "stack") + 
   fake_theme() +
   coord_flip() +
   labs(title = "I am concerned about what is real and what is fake on the internet:", x = "Segment", y = "Percent", caption = "Source: Reuters 2018 Digital News Report") 
   #geom_text(size = 3, position = position_stack(vjust = 0.5))
 
-
 fake_plot
 ```
 
 ```{r poorJ plot}
-poorJ_plot <- ggplot(stack_poor_J, aes(segment, percent_new, width=.5, fill = percent_new)) + #reorder(column, by_what)
-  geom_bar(aes(fill = agreement), stat = "identity", position = "fill") + 
+poorJ_plot <- ggplot(stack_poor_J, aes(segment, percent_new, width=.5, fill = percent_new)) + 
+  geom_bar(aes(fill = agreement), stat = "identity", position = "stack") + 
   poorJ_theme() +
   coord_flip() +
   labs(title = "Concerned about Poor journalism (factual mistakes, dumbed down stories, misleading headlines/clickbait):", x = "Segment", y = "Percent", caption = "Source: Reuters 2018 Digital News Report") 
