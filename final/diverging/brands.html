@@ -8,6 +8,8 @@
   </head>
   <body>
     <div id="chart">
+      <div class="hed">Trust in media brands</div>
+      <div class="dek">On a scale from 1-10 survey participants rated their overall trust in provided media brands.</div>
       <svg width="1400" height="520">
         <g transform="translate(20, 0)">
           <g transform="translate(400, 0)">
@@ -99,7 +101,7 @@
           .attr("transform", "translate(" + centerOffset + ",0)")
           .attr("height", barHeight - 1)
           .classed("trust", true)
-          .style("fill", "#19A0AA");
+          .style("fill", "#41b6c4");
 
         d3.select(this)
           .append("text")

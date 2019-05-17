@@ -31,7 +31,7 @@ Q_FAKE_NEWS_2_6. To what extent, if at all, are you concerned about the followin
 my_theme <- function(){
   list(
       theme_minimal(),
-      scale_fill_manual(values=c("tomato", "#56B4E9", "#999999"), 
+      scale_fill_manual(values=c("tomato", "#41b6c4", "#999999"), 
                        name="Level of Concern",
                        breaks=c("Concerned", "Somewhat concerned", "Not concerned"),
                        labels=c("Concerned", "Somewhat concerned", "Not concerned")) 

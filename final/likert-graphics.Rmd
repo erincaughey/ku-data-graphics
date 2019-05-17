@@ -35,44 +35,53 @@ stack_poor_J <- stack_poor_J %>% mutate(percent_new = percent * 100)
 fake_theme <- function(){
   list(
       theme_minimal(),
-      scale_fill_manual(values=c('#a6611a','#dfc27d','#f5f5f5','#80cdc1','#018571'), 
+      scale_fill_manual(values=c('#253494', '#ffffcc','#a1dab4','#41b6c4','#2c7fb8'), 
                        name="Level of Concern",
-                       breaks=c("Extremely concerned", "Very concerned", "Somewhat concerned", "Not very concerned", "Not at all concerned"),
-                       labels=c("Extremely concerned", "Very concerned", "Somewhat concerned", "Not very concerned", "Not at all concerned")) 
+                       breaks=c("Not at all concerned", "Not very concerned", "Somewhat concerned", "Very concerned", "Extremely concerned"),
+                       labels=c("Not at all concerned", "Not very concerned", "Somewhat concerned", "Very concerned", "Extremely concerned")) 
     )
 }
 
 poorJ_theme <- function(){
   list(
       theme_minimal(),
-      scale_fill_manual(values=c('#a6611a','#dfc27d','#f5f5f5','#80cdc1','#018571'), 
+      scale_fill_manual(values=c('#2c7fb8', '#253494', '#ffffcc','#a1dab4','#41b6c4'), 
                        name="Level of Agreement",
-                       breaks=c("Strongly disagree", "Tend to disagree", "Neither agree nor disagree", "Tend to agree", "Stronly agree"),
-                       labels=c("Strongly disagree", "Tend to disagree", "Neither agree nor disagree", "Tend to agree", "Stronly agree")) 
+                       breaks=c("Strongly disagree", "Tend to disagree", "Neither agree nor disagree", "Tend to agree", "Strongly agree"),
+                       labels=c("Strongly disagree", "Tend to disagree", "Neither agree nor disagree", "Tend to agree", "Strongly agree")) 
     )
 }
 ```
 
 ```{r fake plot}
-fake_plot <- ggplot(stack_real_fake, aes(segment, percent_new, width=.5, fill = percent_new)) + 
-  geom_bar(aes(fill = concern), stat = "identity", position = "stack") + 
+fake_plot <- ggplot(stack_real_fake, aes(segment, percent_new, width=.6)) + 
+  geom_bar(aes(fill = concern), stat = "identity", position = "dodge") +
   fake_theme() +
   coord_flip() +
   labs(title = "I am concerned about what is real and what is fake on the internet:", x = "Segment", y = "Percent", caption = "Source: Reuters 2018 Digital News Report") 
-  #geom_text(size = 3, position = position_stack(vjust = 0.5))
 
 fake_plot
 ```
 
 ```{r poorJ plot}
-poorJ_plot <- ggplot(stack_poor_J, aes(segment, percent_new, width=.5, fill = percent_new)) + 
-  geom_bar(aes(fill = agreement), stat = "identity", position = "stack") + 
+poorJ_plot <- ggplot(stack_poor_J, aes(segment, percent_new, width=.6)) + 
+  geom_bar(aes(fill = agreement), stat = "identity", position = "dodge") +
   poorJ_theme() +
   coord_flip() +
-  labs(title = "Concerned about Poor journalism (factual mistakes, dumbed down stories, misleading headlines/clickbait):", x = "Segment", y = "Percent", caption = "Source: Reuters 2018 Digital News Report") 
-  #geom_text(aes(label = percent_new), colour = "white", hjust = 1.3)
+  labs(title = "Concerned about Poor journalism\n(factual mistakes, dumbed down stories, misleading headlines/clickbait):", x = "Segment", y = "Percent", caption = "Source: Reuters 2018 Digital News Report") 
 
 poorJ_plot
 
+```
+
+export: 
+```{r}
+# PDF or PNG 
+# to speficiy a chart add a "plot = plot_name" parameter after the file name.
+ggsave("real-v-fake.pdf", plot = fake_plot, width = 8, height = 8, units = "in", dpi = 320)
+ggsave("real-v-fake.png", plot = fake_plot, width = 8, height = 8, units = "in", dpi = 320)
+
+ggsave("poor_journalism.pdf", plot = poorJ_plot, width = 11, height = 8, units = "in", dpi = 320)
+ggsave("poor_journalism.png", plot = poorJ_plot, width = 11, height = 8, units = "in", dpi = 320)
 ```
 

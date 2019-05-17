@@ -7,6 +7,20 @@ body {
   margin: 20px 20px;
 }
 
+.hed {
+  font-family: Tahoma;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.dek {
+  font-family: Tahoma;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
 .title {
   font-family: Tahoma;
   font-size: 20px;

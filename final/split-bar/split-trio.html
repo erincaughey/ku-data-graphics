@@ -29,7 +29,7 @@
 
 .footnote a {
     color: #888;
-    text-decoration: underline dashed;
+    /*text-decoration: underline dashed;*/
 }
 
 .axis path,
@@ -70,14 +70,14 @@
 
 <div class="graphic">
     <div class="hed">Who's responsible for separating what's real and what's fake on the internet?</div>
-    <div class="dek">Comparing levels of agreement or disagreement that technology companies should be held accountable for what's real and fake on the internet by age group.</div>
+    <div class="dek">When comparing sentiments if governemnt, technology or media companies should be held accountable for what's real and fake on the internet age group counts show the majority of all ages agree media and technologies companies are most to blame.</div>
     <div class="subdek">Tech</div>
     <svg class="chart chart--tech"></svg>
     <div class="subdek">Media</div>
     <svg class="chart chart--media"></svg>
     <div class="subdek">Gov</div>
     <svg class="chart chart--gov"></svg>
-    <div class="footnote"><a href="http://www.digitalnewsreport.org/">Reuters 2018 Digital News Report</a>. Chart cloned from <a href="https://www.datawrapper.de/">Datawrapper</a> example.</div>
+    <div class="footnote"><a href="http://www.digitalnewsreport.org/">Reuters 2018 Digital News Report</a>.</div>
 </div>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -108,7 +108,7 @@ var column = function(d) { return d.agreement; },
     columnScale = d3.scaleBand().range([0, width]).paddingInner(0.075).domain(columnNames),
     columnValue = function(d) { return columnScale(column(d)); };
 
-var colorRange = d3.schemeBuPu[columnScale.domain().length + 2];
+var colorRange = d3.schemeYlGnBu[columnScale.domain().length + 2];
 
 var color = column,
     colorScale = d3.scaleOrdinal().range(colorRange)
