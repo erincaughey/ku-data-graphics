@@ -1,0 +1,58 @@
+body {
+  font-family: Tahoma, sans-serif;
+  font-size: 12px;
+}
+
+#chart {
+  margin: 20px 20px;
+}
+
+.hed {
+  font-family: Tahoma;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.dek {
+  font-family: Tahoma;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-family: Tahoma;
+  font-size: 20px;
+  font-weight: 100;
+  fill: #333;
+  text-anchor: middle;
+}
+
+.label {
+  text-anchor: middle;
+  fill: #777;
+  font-weight: 900;
+}
+
+.brand.label {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.axis line {
+  stroke: #eee;
+}
+
+.axis path {
+  display: none;
+}
+
+.axis text {
+  font-size: 11px;
+  fill: #777;
+}
+
+#controls * {
+  vertical-align: middle;
+}

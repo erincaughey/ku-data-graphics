@@ -3,6 +3,14 @@
 
 <head>
 <meta charset="utf-8">
+<link href="diverging/main.css" rel="stylesheet">
+<link href="split-bar/split.css" rel="stylesheet">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="diverging/lodash.min.js"></script>
+<script src="diverging/main.js"></script>
+<script src="split-bar/split-trio.js"></script>
+<script src="split-bar/split-ss.js"></script>
 
 <style>
     .main-well{
@@ -49,7 +57,18 @@
     </div>
 
         <div class="graphic-box">
-            <img width="100%" src="graphics/split-trio.png">
+            <!-- <img width="100%" src="graphics/split-trio.png"> -->
+            <div class="graphic" id="trio-graphic">
+                <div class="hed">Who's responsible for separating what's real and what's fake on the internet?</div>
+                <div class="dek">When comparing sentiments if governemnt, technology or media companies should be held accountable for what's real and fake on the internet age group counts show the majority of all ages agree media and technologies companies are most to blame.</div>
+                <div class="subdek">Tech</div>
+                <svg class="chart chart--tech"></svg>
+                <div class="subdek">Media</div>
+                <svg class="chart chart--media"></svg>
+                <div class="subdek">Gov</div>
+                <svg class="chart chart--gov"></svg>
+                <div class="footnote"><a href="http://www.digitalnewsreport.org/">Reuters 2018 Digital News Report</a>.</div>
+            </div>
         </div>
 
     <div class="main-well">
@@ -79,7 +98,16 @@
     </div>
 
         <div class="graphic-box">
-            <img width="100%" src="graphics/search-social-split.png">
+            <!-- <img width="100%" src="graphics/search-social-split.png"> -->
+            <div class="graphic" id="ss-graphic">
+                <div class="hed">Trust in news found on social media, search</div>
+                <div class="dek">Does searching for news via Google or other search engines or browsing news via social media provide more trustworthy content? <br><br> Of those surveyed a count of age groups shows that news found via search seems to lean slightly more trustworthy, while news found via social media leans less trustworthy.</div>
+                <div class="subdek">Trust news in <span><strong>search engines</strong></span> most of the time:</div>
+                <svg class="chart chart--search"></svg>
+                <div class="subdek">Trust news in <span><strong>social media</strong></span> most of the time:</div>
+                <svg class="chart chart--social"></svg>
+                <div class="footnote"><a href="http://www.digitalnewsreport.org/">Reuters 2018 Digital News Report</a>.</div>
+            </div>
         </div>
 
     <div class="main-well">
@@ -89,7 +117,26 @@
     </div>
 
         <div class="graphic-box">
-            <img width="100%" src="graphics/diverging-brand-chart-big-01.png">
+            <!-- <img width="100%" src="graphics/diverging-brand-chart-big-01.png"> -->
+            <div id="chart">
+            <div class="hed">Trust in media brands</div>
+            <div class="dek">On a scale from 1-10 survey participants rated their overall trust in provided media brands.</div>
+                <svg width="1400" height="520">
+                    <g transform="translate(20, 0)">
+                    <g transform="translate(400, 0)">
+                        <text class="title" x="0" y="20"></text>
+                        <text class="distrust label" x="-200" y="55">Distrust</text>
+                        <text class="trust label" x="200" y="55">Trust</text>
+                        <text class="year label" x="0" y="55">Brand</text>
+                        <g transform="translate(0, 60)">
+                        <g class="distrust axis" transform="translate(-70, 0)"></g>
+                        <g class="trust axis" transform="translate(70, 0)"></g>
+                        <g class="bars"></g>
+                        </g>
+                    </g>
+                    </g>
+                </svg>
+            </div>
         </div>
 
     <div class="main-well">

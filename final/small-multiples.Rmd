@@ -1,0 +1,81 @@
+---
+title: "country small multiples"
+output: html_notebook
+---
+
+packages:
+
+```{r libraries}
+library(tidyverse)
+#install.packages("gghighlight")
+library(ggplot2)
+library(gghighlight)
+```
+
+set up data: 
+```{r import and clean}
+country_trust <- read_csv("data/clean_country-fake-news-concern.csv")
+
+country_trust_stack <- country_trust %>% select(country, `Somewhat concerned`, Concerned, `Not concerned`) %>% gather(concern, percent, `Somewhat concerned`, Concerned, `Not concerned`)
+
+country_trust_stack <- country_trust_stack %>% mutate(percent_new = percent * 100)
+
+just_US <- country_trust_stack %>% filter(country == "US")
+```
+ 
+Small multiples to look at: 
+Q_FAKE_NEWS_2_6. To what extent, if at all, are you concerned about the following: - The use of the term fake news (e.g. by politicians, others) to discredit news media they don’t like
+
+## create a theme to highlight
+```{r theme}
+my_theme <- function(){
+  list(
+      theme_minimal(),
+      scale_fill_manual(values=c("tomato", "#41b6c4", "#999999"), 
+                       name="Level of Concern",
+                       breaks=c("Concerned", "Somewhat concerned", "Not concerned"),
+                       labels=c("Concerned", "Somewhat concerned", "Not concerned")) 
+    )
+}
+```
+
+
+test plot with USA: 
+
+```{r single plot}
+US_trust <- ggplot(just_US, aes(reorder(concern, percent_new), percent_new, width=.5)) +
+  geom_bar(aes(fill = concern), stat = "identity") + 
+  my_theme() +
+  coord_flip() +
+  labs(title = "Level of concern over the term fake news in each country surveyed", x = "level of concern", y = "percent", caption = "Source: Reuters 2018 Digital News Report") +
+  geom_text(aes(label = percent_new), colour = "white", hjust = 1.3)
+
+US_trust #+ gghighlight(percent_new == 50)
+```
+
+small multiples: 
+
+```{r small multiiples}
+
+all_countries <- ggplot(country_trust_stack, aes(reorder(concern, percent_new), percent_new, width=.6)) +
+  geom_bar(stat = "identity", aes(fill = concern)) +
+  my_theme() +
+  coord_flip() +
+  labs(title = "Level of concern over the term fake news in each country surveyed", x = "level of concern", y = "percent", caption = "Source: Reuters 2018 Digital News Report") +
+  facet_wrap(~ country) + 
+  theme_minimal()
+
+all_countries
+```
+
+export: 
+```{r}
+# PDF or PNG 
+# to speficiy a chart add a "plot = plot_name" parameter after the file name.
+ggsave("US_only.pdf", plot = US_trust, width = 8, height = 8, units = "in", dpi = 320)
+ggsave("US_only.png", plot = US_trust, width = 8, height = 8, units = "in", dpi = 320)
+
+ggsave("all_countries.pdf", plot = all_countries, width = 11, height = 8, units = "in", dpi = 320)
+ggsave("all_countries.png", plot = all_countries, width = 11, height = 8, units = "in", dpi = 320)
+```
+
