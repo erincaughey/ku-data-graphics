@@ -1,6 +1,8 @@
 ---
 title: "country small multiples"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 packages:

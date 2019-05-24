@@ -1,6 +1,8 @@
 ---
 title: "Likert scales - horizontal bar"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## Likert scale counts based on Reuters 2018 Digital Report Tables

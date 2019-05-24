@@ -8,9 +8,6 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 <script src="diverging/lodash.min.js"></script>
-<script src="diverging/main.js"></script>
-<script src="split-bar/split-trio.js"></script>
-<script src="split-bar/split-ss.js"></script>
 
 <style>
     .main-well{
@@ -19,7 +16,7 @@
     }
     .graphic-box{
         margin: 0 auto;
-        max-width: 1000px;
+        max-width: 900px;
         padding: 20px;
     }
 </style> 
@@ -36,7 +33,7 @@
     </div>
     
         <div class="graphic-box">
-            <img width="100%" src="graphics/all_countries-big-01.png">
+            <img width="100%" src="graphics/all_countries-big.png">
         </div>
         
     <div class="main-well">
@@ -46,7 +43,7 @@
     </div>
 
         <div class="graphic-box">
-            <img width="100%" src="graphics/US_only-big-01.png">
+            <img width="100%" src="graphics/US_only-big.png">
         </div>
 
     <div class="main-well">
@@ -88,7 +85,7 @@
     </div>
 
         <div class="graphic-box">
-            <img width="100%" src="graphics/real-v-fake-big-01.png">
+            <img width="100%" src="graphics/real-v-fake-big.png">
         </div>
 
     <div class="main-well">
@@ -156,7 +153,20 @@
 
         <p>Open source follows a structural path of putting an idea out there and letting it be consumed, tested and adjusted by others without discrimination as to who is involved. In <em>The Field Guide to Open Source in the Newsroom</em>, originally published by OpenNews in 2016, nearly 30 newsroom developers concluded that the goal of open source lies in the sharing of knowledge for the public good. &ldquo;When we share tools that solve common problems, we work faster and spend more time covering the news. Releasing projects to the public puts more eyes on our code, and makes it better.&rdquo;</p>
         <p>The same solution could be said to improve misinformation. Release a story with full documentation on how it was sourced, the process of reporting, and explanation of why key concepts are important. Some would argue that journalists already do this in the process of objective reporting. However, the &ldquo;how&rdquo; of how a journalist found the sources and came to conclusions can still be fuzzy.</p>
+
+        <div style="background-color: lightblue; padding: 20px;">
+            <h4>Analysis and data:</h4>
+            <p>Data tables of survey results were requested from the Reuters Institue.</p>
+            <p>Questions and analyzed data for general trust and misinformation graphics: <a href="data-cleaning.html">Done in R</a></p>
+            <p>Steps for small multiples of trust across surveyed countries: <a href="small-mulitples.html">Done in R</a></p>
+            <p>Grouped bar charts of likert scales: <a href="likert-graphics.html">Done in R</a> <em>(Adjustments of bar and ledgend order made in Adobe Illustrator)</em></p>
+        </div>
     </div>
+
+    <script src="diverging/main.js"></script>
+    <script src="split-bar/split-trio.js"></script>
+    <script src="split-bar/split-ss.js"></script>
+
 </body>
 
 </html>
