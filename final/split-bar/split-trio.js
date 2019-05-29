@@ -56,8 +56,6 @@ function renderChart(id, dataFlat) {
     // Excluding the light colors from the color scheme
     colorScale
         .domain(dataFlat.map(color));
-    
-    console.log(colorScale.range())
 
     svg.append('g').attr('class', 'axis axis--y')
         .call(yAxis);
@@ -120,17 +118,17 @@ function renderChart(id, dataFlat) {
             .each(positionLabel);
 }
 
-d3.csv('trio-gov.csv', row, function(error, dataFlat) {
+d3.csv('data/trio-gov.csv', row, function(error, dataFlat) {
     if (error) throw error;    
     renderChart('gov', dataFlat);
 });
 
-d3.csv('trio-tech.csv', row, function(error, dataFlat) {
+d3.csv('data/trio-tech.csv', row, function(error, dataFlat) {
     if (error) throw error;    
     renderChart('tech', dataFlat);
 });
 
-d3.csv('trio-media.csv', row, function(error, dataFlat) {
+d3.csv('data/trio-media.csv', row, function(error, dataFlat) {
     if (error) throw error;    
     renderChart('media', dataFlat);
 });

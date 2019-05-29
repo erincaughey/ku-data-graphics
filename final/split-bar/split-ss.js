@@ -56,8 +56,6 @@ function renderChart(id, dataFlat) {
     // Excluding the light colors from the color scheme
     colorScale
         .domain(dataFlat.map(color));
-    
-    console.log(colorScale.range())
 
     svg.append('g').attr('class', 'axis axis--y')
         .call(yAxis);
@@ -120,20 +118,15 @@ function renderChart(id, dataFlat) {
             .each(positionLabel);
 }
 
-d3.csv('age-searchtrust-split.csv', row, function(error, dataFlat) {
+d3.csv('data/age-searchtrust-split.csv', row, function(error, dataFlat) {
     if (error) throw error;    
     renderChart('search', dataFlat);
 });
 
-d3.csv('age-socialtrust-split.csv', row, function(error, dataFlat) {
+d3.csv('data/age-socialtrust-split.csv', row, function(error, dataFlat) {
     if (error) throw error;    
     renderChart('social', dataFlat);
 });
-
-//d3.csv('trio-media.csv', row, function(error, dataFlat) {
-//    if (error) throw error;    
-//    renderChart('media', dataFlat);
-//});
 
 function wrap(text, width) {
   text.each(function() {
