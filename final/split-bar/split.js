@@ -4,9 +4,6 @@ var margin = { top: 50, right: 10, bottom: 10, left: 65 },
     width = 600 - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom;
 
-var graphicOne = d3.select('#trio-graphic')
-    .style('width', width + 'px');
-
 var x = function(d) { return d.count; },
     xScale = d3.scaleLinear().domain([0, 420]),
     xValue = function(d) { return xScale(x(d)); };
@@ -38,7 +35,7 @@ function row(d) {
 }
 
 function renderChart(id, dataFlat) {
-    var svg = graphicOne.select('svg.chart--' + id)
+    var svg = graphicTwo.select('svg.chart--' + id)
             .attr('width', width + margin.left + margin.right)
             .attr('height', height + margin.top + margin.bottom)
         .append('g')
@@ -117,21 +114,6 @@ function renderChart(id, dataFlat) {
             .text(function(d) { return formatLabel(x(d)); })
             .each(positionLabel);
 }
-
-d3.csv('data/trio-gov.csv', row, function(error, dataFlat) {
-    if (error) throw error;    
-    renderChart('gov', dataFlat);
-});
-
-d3.csv('data/trio-tech.csv', row, function(error, dataFlat) {
-    if (error) throw error;    
-    renderChart('tech', dataFlat);
-});
-
-d3.csv('data/trio-media.csv', row, function(error, dataFlat) {
-    if (error) throw error;    
-    renderChart('media', dataFlat);
-});
 
 function wrap(text, width) {
   text.each(function() {

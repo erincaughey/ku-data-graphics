@@ -4,7 +4,7 @@ var margin = { top: 50, right: 10, bottom: 10, left: 65 },
     width = 600 - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom;
 
-var graphic = d3.select('#ss-graphic')
+var graphicTwo = d3.select('#ss-graphic')
     .style('width', width + 'px');
 
 var x = function(d) { return d.count; },
@@ -38,7 +38,7 @@ function row(d) {
 }
 
 function renderChart(id, dataFlat) {
-    var svg = graphic.select('svg.chart--' + id)
+    var svg = graphicTwo.select('svg.chart--' + id)
             .attr('width', width + margin.left + margin.right)
             .attr('height', height + margin.top + margin.bottom)
         .append('g')
