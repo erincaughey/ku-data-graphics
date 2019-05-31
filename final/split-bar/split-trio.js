@@ -1,3 +1,4 @@
+(function () {
 var formatLabel = function(d) { return d3.format('.0f')(d); };
 
 var margin = { top: 50, right: 10, bottom: 10, left: 65 },
@@ -98,12 +99,12 @@ function renderChart(id, dataFlat) {
             d3.select(this)
                 .classed('label--white', false)
                 .attr('x', xValue)
-                .attr('dx', 2);
+                .attr('dx', 12);
         } else {
             d3.select(this)
                 .classed('label--white', true)
                 .attr('x', 0)
-                .attr('dx', 4);
+                .attr('dx', 12);
         }
         d3.select(this)
             .attr('y', yScale(y(d)) + (yScale.bandwidth() / 2))
@@ -156,3 +157,4 @@ function wrap(text, width) {
     }
   });
 }
+})();
